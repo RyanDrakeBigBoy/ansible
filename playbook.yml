@@ -1,1 +1,16 @@
-10.0.0.198
+---
+
+- hosts: all
+  become: true
+  tasks:
+  - name: update repo index
+    dnf:
+      name: "*"
+      state: latest
+
+  - name: install apache2 package
+    dnf:
+      name: httpd
+      name: '@Development tools'
+      name: mariadb-server
+      state: latest
