@@ -8,9 +8,20 @@
       name: "*"
       state: latest
 
-  - name: install apache2 package
+  - name: install apache2 package with mariadb and devtools
     dnf:
       name: httpd
       name: '@Development tools'
       name: mariadb-server
       state: latest
+
+  - name: enable service httpd and ensure its not masked
+    systemd:
+      name: httpd
+      enabled: yes
+      masked: no
+
+  - name: ensure service is running
+    systemd:
+      name: httpd
+      state: started
